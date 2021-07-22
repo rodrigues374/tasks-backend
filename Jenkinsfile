@@ -12,9 +12,14 @@ pipeline {
             }
         }
         stage ('Sonar Analysis'){
+            
+            environment {
+                scannerHome = tool 'SONAR_SCANNER'
+            }
+            
             steps {
                 withSonarQubeEnv('SONAR_LOCAL'){
-                    sh 'mvn sonar:sonar -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d8316423832c2aa968ba603e04a1d53eccf74629 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java '
+                    sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d8316423832c2aa968ba603e04a1d53eccf74629 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
                 }
             }
         }
