@@ -62,6 +62,7 @@ pipeline {
     post {
         always {
             junit skipMarkingBuildUnstable: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: 'target/tasks-backend.war, front-end/target/tasks.war', onlyIfSuccessful: true
         }
         unsuccessful {
             emailext attachLog: true, body: 'asasasa', subject: ' $BUILD_NUMBER FALHA', to: 'rodolfo.rodrigues+jenkins374@gmail.com'
