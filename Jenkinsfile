@@ -64,10 +64,10 @@ pipeline {
             junit skipMarkingBuildUnstable: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml'
         }
         unsuccessful {
-            emailext body: 'asasasa', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS! FALHA', to: 'rodolfo.rodrigues+jenkins374@gmail.com'
+            emailext attachlog: true, body: 'asasasa', subject: ' $BUILD_NUMBER FALHA', to: 'rodolfo.rodrigues+jenkins374@gmail.com'
         }
         fixed {
-            emailext body: 'asasasa', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS! OK', to: 'rodolfo.rodrigues+jenkins374@gmail.com'
+            emailext attachlog: true, body: 'asasasa', subject: '$BUILD_NUMBER OK', to: 'rodolfo.rodrigues+jenkins374@gmail.com'
         }
     }
 }
